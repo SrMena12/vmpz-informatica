@@ -9,7 +9,7 @@ import { whatsappLink } from '@/lib/site';
 import { cn } from '@/lib/utils';
 
 const links = [
-  { href: '/servicios', label: 'Servicios' },
+  { href: '/servicios', label: 'Servicios', emphasis: true },
   { href: '/blog', label: 'Blog' },
   { href: '/contacto', label: 'Contacto' },
 ];
@@ -37,7 +37,16 @@ export function Navbar() {
 
         <div className="hidden items-center gap-8 md:flex">
           {links.map((l) => (
-            <Link key={l.href} href={l.href} className="text-sm text-muted transition-colors hover:text-ink">
+            <Link
+              key={l.href}
+              href={l.href}
+              className={cn(
+                'text-sm transition-colors',
+                l.emphasis
+                  ? 'rounded-full border border-electric/40 bg-electric/10 px-3.5 py-1.5 font-semibold text-electric2 hover:bg-electric/20'
+                  : 'text-muted hover:text-ink'
+              )}
+            >
               {l.label}
             </Link>
           ))}
@@ -66,7 +75,12 @@ export function Navbar() {
                 key={l.href}
                 href={l.href}
                 onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-ink hover:bg-white/[0.05]"
+                className={cn(
+                  'rounded-lg px-3 py-3',
+                  l.emphasis
+                    ? 'bg-electric/10 font-semibold text-electric2'
+                    : 'text-ink hover:bg-white/[0.05]'
+                )}
               >
                 {l.label}
               </Link>

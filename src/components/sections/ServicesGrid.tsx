@@ -4,7 +4,7 @@ import { Reveal } from '@/components/Reveal';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { servicios, formatPrecio } from '@/lib/servicios';
 
-export function ServicesGrid({ heading = true }: { heading?: boolean }) {
+export function ServicesGrid({ heading = true, showPrice = false }: { heading?: boolean; showPrice?: boolean }) {
   return (
     <section id="servicios" className="section container-page scroll-mt-20">
       {heading && (
@@ -33,8 +33,17 @@ export function ServicesGrid({ heading = true }: { heading?: boolean }) {
               <h3 className="mt-5 font-display text-xl font-semibold">{s.name}</h3>
               <p className="mt-2 flex-1 text-sm text-muted">{s.tagline}</p>
               <div className="mt-5 border-t border-line pt-4">
-                <span className="text-xs uppercase tracking-wider text-muted">Precio</span>
-                <p className="font-display text-lg font-bold text-electric2">{formatPrecio(s)}</p>
+                {showPrice ? (
+                  <>
+                    <span className="text-xs uppercase tracking-wider text-muted">Precio</span>
+                    <p className="font-display text-lg font-bold text-electric2">{formatPrecio(s)}</p>
+                  </>
+                ) : (
+                  <span className="inline-flex items-center gap-1 text-sm font-medium text-electric2">
+                    Ver detalles
+                    <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                )}
               </div>
             </Link>
           </Reveal>

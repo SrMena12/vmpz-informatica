@@ -3,7 +3,6 @@ import { MapPin } from 'lucide-react';
 import { Hero } from '@/components/sections/Hero';
 import { ServicesGrid } from '@/components/sections/ServicesGrid';
 import { Trust } from '@/components/sections/Trust';
-import { BudgetCalculator } from '@/components/sections/BudgetCalculator';
 import { Faq } from '@/components/sections/Faq';
 import { ContactCTA } from '@/components/sections/ContactCTA';
 import { Reveal } from '@/components/Reveal';
@@ -37,7 +36,6 @@ export default function HomePage() {
       <Hero />
       <ServicesGrid />
       <Trust />
-      <BudgetCalculator />
 
       {/* Zonas de servicio */}
       <section className="section container-page">

@@ -74,7 +74,7 @@ export function Hero() {
           initial={{ opacity: 0, scale: 0.94 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.9, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto hidden max-w-sm lg:block"
+          className="relative mx-auto w-full max-w-[240px] sm:max-w-xs lg:max-w-sm"
         >
           <div className="absolute inset-x-6 bottom-6 top-10 rounded-full bg-electric/25 blur-[90px]" />
           <Image
