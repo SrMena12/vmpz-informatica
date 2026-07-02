@@ -4,15 +4,16 @@ import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { ChevronRight, MapPin, Check, ArrowRight } from 'lucide-react';
 
-import { municipios, getMunicipio } from '@/lib/municipios';
+import { municipios, getMunicipio, zonaFaq } from '@/lib/municipios';
 import { servicios, formatPrecio } from '@/lib/servicios';
 import { buildMetadata } from '@/lib/seo';
 import { site, whatsappLink } from '@/lib/site';
 import { Button } from '@/components/ui/Button';
 import { ServiceIcon } from '@/components/ServiceIcon';
 import { Reveal } from '@/components/Reveal';
+import { Faq } from '@/components/sections/Faq';
 import { ContactCTA } from '@/components/sections/ContactCTA';
-import { JsonLd, breadcrumbSchema } from '@/components/JsonLd';
+import { JsonLd, breadcrumbSchema, faqSchema } from '@/components/JsonLd';
 
 type Params = { municipio: string };
 
@@ -37,6 +38,7 @@ export default async function ZonaPage({ params }: { params: Promise<Params> }) 
   if (!m) notFound();
 
   const waMsg = `Hola, estoy en ${m.name} y me gustaría consultaros un servicio informático a domicilio.`;
+  const faq = zonaFaq(m);
 
   // Schema de servicio local acotado al municipio.
   const localSchema = {
@@ -47,7 +49,10 @@ export default async function ZonaPage({ params }: { params: Promise<Params> }) 
     url: `${site.url}/zonas/${m.slug}`,
     telephone: site.phoneIntl,
     email: site.email,
-    areaServed: { '@type': 'City', name: m.name },
+    areaServed: [
+      { '@type': 'City', name: m.name },
+      { '@type': 'AdministrativeArea', name: m.comarca },
+    ],
     provider: { '@id': `${site.url}/#business` },
   };
 
@@ -57,15 +62,18 @@ export default async function ZonaPage({ params }: { params: Promise<Params> }) 
       <JsonLd
         data={breadcrumbSchema([
           { name: 'Inicio', path: '/' },
-          { name: 'Zonas', path: '/#zonas' },
+          { name: 'Zonas', path: '/zonas' },
           { name: m.name, path: `/zonas/${m.slug}` },
         ])}
       />
+      <JsonLd data={faqSchema(faq)} />
 
       {/* Breadcrumb */}
       <nav className="container-page pt-6 text-sm text-muted" aria-label="Ruta de navegación">
         <ol className="flex flex-wrap items-center gap-1">
           <li><Link href="/" className="hover:text-ink">Inicio</Link></li>
+          <ChevronRight size={14} />
+          <li><Link href="/zonas" className="hover:text-ink">Zonas</Link></li>
           <ChevronRight size={14} />
           <li className="text-ink">{m.name}</li>
         </ol>
@@ -183,6 +191,31 @@ export default async function ZonaPage({ params }: { params: Promise<Params> }) 
           </div>
         </Reveal>
       </section>
+
+      {/* Enlace a empresas (SEO interno + captación B2B) */}
+      <section className="container-page pt-8">
+        <Reveal>
+          <Link
+            href="/empresas"
+            className="glow-card group flex flex-wrap items-center justify-between gap-4"
+          >
+            <div>
+              <h2 className="font-display text-lg font-semibold text-ink">
+                ¿Tienes un negocio en {m.name}?
+              </h2>
+              <p className="mt-1 text-sm text-muted">
+                Mantenimiento informático para empresas y autónomos con cuota fija.
+              </p>
+            </div>
+            <span className="flex items-center gap-1 text-sm font-semibold text-electric2">
+              Ver planes
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+            </span>
+          </Link>
+        </Reveal>
+      </section>
+
+      <Faq items={faq} title={`Preguntas frecuentes en ${m.name}`} />
 
       <ContactCTA
         title={`¿Necesitas ayuda en ${m.name}?`}

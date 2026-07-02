@@ -38,6 +38,8 @@ export const metadata: Metadata = {
     'reparación ordenadores Toledo',
     'instalación SSD Toledo',
     'soporte informático La Sagra',
+    'mantenimiento informático empresas Toledo',
+    'informático para autónomos La Sagra',
     `informático ${site.city}`,
   ],
   openGraph: {

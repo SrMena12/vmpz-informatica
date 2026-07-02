@@ -1,4 +1,5 @@
 import { site } from '@/lib/site';
+import { municipios } from '@/lib/municipios';
 
 /** Inserta un bloque JSON-LD en la página. */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -19,18 +20,38 @@ export function localBusinessSchema() {
     '@id': `${site.url}/#business`,
     name: site.name,
     description: site.description,
+    slogan: site.tagline,
     url: site.url,
     telephone: site.phoneIntl,
     email: site.email,
     image: `${site.url}/personaje/hero.png`,
+    logo: `${site.url}/brand/logo.png`,
     priceRange: '€€',
+    currenciesAccepted: 'EUR',
     address: {
       '@type': 'PostalAddress',
       addressLocality: site.city,
       addressRegion: site.province,
       addressCountry: site.country,
     },
-    areaServed: [site.city, site.province, site.region, 'Illescas', 'Yuncos', 'Bargas'],
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: site.geo.lat,
+      longitude: site.geo.lng,
+    },
+    hasMap: site.mapsUrl,
+    // Todas las zonas de servicio + comarca y provincia.
+    areaServed: [
+      ...municipios.map((m) => ({ '@type': 'City', name: m.name })),
+      { '@type': 'AdministrativeArea', name: site.region },
+      { '@type': 'AdministrativeArea', name: `${site.province} (provincia)` },
+    ],
+    openingHoursSpecification: site.hours.map((h) => ({
+      '@type': 'OpeningHoursSpecification',
+      dayOfWeek: h.days,
+      opens: h.opens,
+      closes: h.closes,
+    })),
     sameAs: [site.instagramUrl, site.mapsUrl],
     aggregateRating: {
       '@type': 'AggregateRating',

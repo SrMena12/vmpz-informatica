@@ -26,6 +26,17 @@ export const site = {
   country: 'ES',
   serviceNote: 'Servicio a domicilio',
 
+  // Coordenadas para el SEO local (JSON-LD). Aproximadas de Mocejón:
+  // AJUSTA a tu ubicación real (búscala en Google Maps → clic derecho → copiar lat/lng).
+  geo: { lat: 39.9403, lng: -3.9036 },
+
+  // Horario de atención para el SEO local (JSON-LD). AJUSTA a tus horarios reales.
+  // days admite: Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday.
+  hours: [
+    { days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'], opens: '09:00', closes: '19:00' },
+    { days: ['Saturday'], opens: '10:00', closes: '14:00' },
+  ],
+
   // --- Redes / mapa ---
   instagram: 'informatica_vmpz',
   instagramUrl: 'https://instagram.com/informatica_vmpz',

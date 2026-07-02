@@ -75,3 +75,32 @@ export const municipios: Municipio[] = [
 export function getMunicipio(slug: string): Municipio | undefined {
   return municipios.find((m) => m.slug === slug);
 }
+
+/**
+ * FAQ localizada por municipio. Da profundidad de contenido (evita páginas
+ * "doorway" casi vacías) y genera resultados enriquecidos (FAQPage) en Google.
+ */
+export function zonaFaq(m: Municipio): { q: string; a: string }[] {
+  return [
+    {
+      q: `¿Vais a domicilio en ${m.name}?`,
+      a: `Sí. Vamos a tu casa o negocio en ${m.name} y alrededores con todo lo necesario, así no tienes que mover el equipo ni esperar en una tienda.`,
+    },
+    {
+      q: `¿Cuánto tardáis en atender en ${m.name}?`,
+      a: `Somos de la zona (${m.comarca}), así que coordinamos la visita cuanto antes. Muchas reparaciones habituales se resuelven el mismo día.`,
+    },
+    {
+      q: `¿Qué servicios ofrecéis en ${m.name}?`,
+      a: `Instalación de SSD, montaje de equipos, formateo y puesta a punto, copias de seguridad, limpieza de polvo, eliminación de virus y asesoramiento. También mantenimiento informático para empresas y autónomos.`,
+    },
+    {
+      q: `¿Trabajáis con empresas y autónomos en ${m.name}?`,
+      a: `Sí. Además del servicio a particulares, ofrecemos mantenimiento informático a pymes y autónomos con cuota fija: copias, seguridad y soporte.`,
+    },
+    {
+      q: `¿El precio incluye el desplazamiento a ${m.name}?`,
+      a: `Te damos un precio claro antes de empezar, con el desplazamiento dentro de la zona incluido. Sin sorpresas al final.`,
+    },
+  ];
+}
