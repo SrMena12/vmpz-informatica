@@ -9,7 +9,7 @@ import { Reveal } from '@/components/Reveal';
 import { JsonLd, breadcrumbSchema } from '@/components/JsonLd';
 
 export const metadata: Metadata = buildMetadata({
-  title: 'Contacto',
+  title: 'Contacto — Informático en Toledo y La Sagra',
   description:
     'Contacta con VMPZ Informática por WhatsApp, correo o teléfono. Servicio informático a domicilio en Toledo y La Sagra, con presupuesto claro desde el principio.',
   path: '/contacto',

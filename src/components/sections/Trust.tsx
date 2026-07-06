@@ -1,13 +1,7 @@
-import { Star, BadgeCheck, Clock, Shield, Sparkles } from 'lucide-react';
+import { Star } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 import { site } from '@/lib/site';
-
-const pillars = [
-  { icon: Sparkles, title: 'Soluciones personalizadas', text: 'Cada equipo y cada persona es distinta; adaptamos la solución.' },
-  { icon: BadgeCheck, title: 'Experiencia y profesionalidad', text: 'Trabajo bien hecho, explicado en cristiano y sin sorpresas.' },
-  { icon: Clock, title: 'Atención rápida y cercana', text: 'Respondemos pronto y vamos a tu domicilio cuando lo necesitas.' },
-  { icon: Shield, title: 'Tu tecnología en buenas manos', text: 'Tus datos y tu equipo, tratados con el cuidado que merecen.' },
-];
+import { testimonios } from '@/lib/testimonios';
 
 export function Trust() {
   return (
@@ -21,24 +15,39 @@ export function Trust() {
             {site.reviews.rating.toFixed(1)} · {site.reviews.count} reseñas en Google
           </span>
         </div>
-        <h2 className="mt-6 font-display text-3xl font-bold sm:text-4xl">Clientes que repiten y recomiendan</h2>
+        <h2 className="mt-6 font-display text-3xl font-bold sm:text-4xl">Lo que dicen mis clientes</h2>
         <p className="mt-4 text-muted">
-          Nuestra mejor carta de presentación son las valoraciones de quienes ya confían en nosotros.{' '}
-          <a href={site.mapsUrl} target="_blank" rel="noopener noreferrer" className="text-electric2 hover:underline">
-            Léelas en Google
+          Estas son reseñas reales de clientes en Google.{' '}
+          <a
+            href={site.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-electric2 hover:underline"
+          >
+            Léelas todas aquí
           </a>
           .
         </p>
       </Reveal>
 
-      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        {pillars.map((p, i) => (
-          <Reveal as="div" index={i} key={p.title} className="glow-card text-center">
-            <span className="mx-auto flex h-12 w-12 items-center justify-center rounded-xl border border-electric/30 bg-electric/10 text-electric2">
-              <p.icon size={22} aria-hidden="true" />
-            </span>
-            <h3 className="mt-4 font-display text-base font-semibold">{p.title}</h3>
-            <p className="mt-2 text-sm text-muted">{p.text}</p>
+      <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {testimonios.map((t, i) => (
+          <Reveal as="div" index={i % 3} key={t.author} className="glow-card flex h-full flex-col">
+            <div className="flex gap-1" aria-label={`${t.rating} de 5 estrellas`}>
+              {Array.from({ length: t.rating }).map((_, s) => (
+                <Star key={s} size={16} className="fill-electric2 text-electric2" />
+              ))}
+            </div>
+            <p className="mt-4 flex-1 text-sm leading-relaxed text-muted">“{t.text}”</p>
+            <div className="mt-5 flex items-center gap-3 border-t border-line pt-4">
+              <span className="flex h-9 w-9 items-center justify-center rounded-full bg-electric/15 font-display text-sm font-semibold text-electric2">
+                {t.author.charAt(0)}
+              </span>
+              <span className="text-sm">
+                <span className="block font-medium text-ink">{t.author}</span>
+                <span className="text-xs text-muted">Reseña en {t.source}</span>
+              </span>
+            </div>
           </Reveal>
         ))}
       </div>

@@ -1,5 +1,6 @@
 import { site } from '@/lib/site';
 import { municipios } from '@/lib/municipios';
+import { testimonios } from '@/lib/testimonios';
 
 /** Inserta un bloque JSON-LD en la página. */
 export function JsonLd({ data }: { data: Record<string, unknown> }) {
@@ -59,6 +60,13 @@ export function localBusinessSchema() {
       reviewCount: site.reviews.count,
       bestRating: 5,
     },
+    review: testimonios.map((t) => ({
+      '@type': 'Review',
+      author: { '@type': 'Person', name: t.author },
+      reviewRating: { '@type': 'Rating', ratingValue: t.rating, bestRating: 5 },
+      reviewBody: t.text,
+      datePublished: t.date,
+    })),
   };
 }
 

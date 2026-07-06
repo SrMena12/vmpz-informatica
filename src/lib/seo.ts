@@ -19,7 +19,7 @@ export function buildMetadata({
   noindex = false,
 }: SeoInput): Metadata {
   const url = new URL(path, site.url).toString();
-  const fullTitle = path === '/' ? `${site.name} · ${site.tagline}` : `${title} · ${site.name}`;
+  const fullTitle = `${title} · ${site.name}`;
 
   return {
     title: fullTitle,

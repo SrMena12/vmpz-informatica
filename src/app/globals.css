@@ -68,3 +68,94 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* =====================================================
+   Efectos RGB — VMPZ Gaming
+   ===================================================== */
+@keyframes rgb-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@keyframes rgb-breathe {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* Degradado RGB base reutilizable */
+.rgb-gradient {
+  background-image: linear-gradient(
+    90deg,
+    #ff0040, #ff8a00, #ffe600, #22ff66, #00e5ff, #2b6bff, #b14bff, #ff0040
+  );
+  background-size: 200% 100%;
+  animation: rgb-flow 6s linear infinite;
+}
+
+/* Tira LED horizontal que "fluye" */
+.rgb-strip {
+  height: 3px;
+  border-radius: 999px;
+  background-image: linear-gradient(
+    90deg,
+    #ff0040, #ff8a00, #ffe600, #22ff66, #00e5ff, #2b6bff, #b14bff, #ff0040
+  );
+  background-size: 200% 100%;
+  animation: rgb-flow 6s linear infinite;
+  box-shadow: 0 0 14px rgba(120, 170, 255, 0.55);
+}
+
+/* Subrayado RGB del botón "Gaming" del menú */
+.rgb-underline::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 2.5px;
+  border-radius: 999px;
+  background-image: linear-gradient(
+    90deg,
+    #ff0040, #ff8a00, #ffe600, #22ff66, #00e5ff, #2b6bff, #b14bff, #ff0040
+  );
+  background-size: 200% 100%;
+  animation: rgb-flow 4s linear infinite;
+  box-shadow: 0 0 10px rgba(150, 120, 255, 0.75), 0 0 4px rgba(255, 255, 255, 0.4);
+}
+
+/* Marco RGB animado (tipo ventilador RGB) */
+.rgb-frame::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.6px;
+  background-image: linear-gradient(
+    90deg,
+    #ff0040, #ff8a00, #ffe600, #22ff66, #00e5ff, #2b6bff, #b14bff, #ff0040
+  );
+  background-size: 200% 100%;
+  animation: rgb-flow 5s linear infinite;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Texto con degradado RGB */
+.rgb-text {
+  background-image: linear-gradient(
+    90deg,
+    #ff5c8a, #ffb14b, #ffe600, #45ff86, #00e5ff, #6b9bff, #c07bff, #ff5c8a
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+          background-clip: text;
+  color: transparent;
+  animation: rgb-flow 6s linear infinite;
+}
+
+/* Punto LED "encendido" que respira */
+.rgb-dot {
+  animation: rgb-breathe 2.4s ease-in-out infinite;
+}

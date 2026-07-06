@@ -159,6 +159,30 @@ export const empresasFaq: { q: string; a: string }[] = [
   },
 ];
 
+/** Servicio de renovación / suministro de equipos de oficina. */
+export const renovacion = {
+  eyebrow: 'Renovación de equipos',
+  title: 'Renovamos los equipos de tu oficina',
+  text: 'Ordenadores lentos frenan a tu equipo. Nos encargamos de todo: te asesoramos, conseguimos los equipos, los dejamos configurados y listos para trabajar, y migramos tus datos del equipo antiguo. Tú solo enciendes y sigues trabajando.',
+  opciones: [
+    {
+      icon: 'Laptop',
+      title: 'Equipos nuevos a medida',
+      text: 'Portátiles y sobremesa elegidos para lo que hace tu negocio, ni de más ni de menos. Instalados, actualizados y listos.',
+    },
+    {
+      icon: 'RefreshCw',
+      title: 'Reacondicionados de empresa',
+      text: 'Equipos profesionales renovados y garantizados: gran rendimiento por bastante menos y con una opción más sostenible.',
+    },
+    {
+      icon: 'DatabaseBackup',
+      title: 'Migración y puesta a punto',
+      text: 'Pasamos tus datos, cuentas y programas del equipo viejo al nuevo, sin perder nada y sin parar tu actividad.',
+    },
+  ],
+};
+
 export const empresasKeywords: string[] = [
   'mantenimiento informático empresas Toledo',
   'informático para autónomos La Sagra',

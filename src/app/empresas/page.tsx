@@ -12,6 +12,7 @@ import {
   planes,
   razones,
   sectores,
+  renovacion,
   empresasFaq,
   empresasKeywords,
 } from '@/lib/empresas';
@@ -273,6 +274,43 @@ export default function EmpresasPage() {
                 </div>
               ))}
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Renovación de equipos */}
+      <section className="section container-page">
+        <div className="rounded-3xl border border-line bg-surface/50 p-6 sm:p-10">
+          <Reveal className="mb-8 max-w-2xl">
+            <span className="eyebrow">{renovacion.eyebrow}</span>
+            <h2 className="mt-5 font-display text-3xl font-bold sm:text-4xl">{renovacion.title}</h2>
+            <p className="mt-4 text-muted">{renovacion.text}</p>
+          </Reveal>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {renovacion.opciones.map((op, i) => (
+              <Reveal key={op.title} index={i}>
+                <div className="glow-card h-full">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-electric/15 text-electric2">
+                    <ServiceIcon name={op.icon} size={20} />
+                  </span>
+                  <h3 className="mt-4 font-display text-lg font-semibold text-ink">{op.title}</h3>
+                  <p className="mt-1.5 text-sm text-muted">{op.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="mt-8">
+            <a
+              href={whatsappLink(
+                'Hola, me interesa renovar los equipos de mi oficina. ¿Me asesoráis?'
+              )}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button variant="outline">
+                <MessageCircle size={18} /> Pídenos presupuesto de renovación
+              </Button>
+            </a>
           </Reveal>
         </div>
       </section>

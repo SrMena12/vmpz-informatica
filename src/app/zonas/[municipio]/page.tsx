@@ -90,6 +90,7 @@ export default async function ZonaPage({ params }: { params: Promise<Params> }) 
             Informático a domicilio en {m.name}
           </h1>
           <p className="mt-5 text-lg text-muted">{m.intro}</p>
+          <p className="mt-4 text-muted">{m.local}</p>
           <div className="mt-8">
             <a href={whatsappLink(waMsg)} target="_blank" rel="noopener noreferrer">
               <Button size="lg" variant="whatsapp">Consultar por WhatsApp</Button>

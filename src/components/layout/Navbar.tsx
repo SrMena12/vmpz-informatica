@@ -11,7 +11,9 @@ import { cn } from '@/lib/utils';
 const links = [
   { href: '/servicios', label: 'Servicios', emphasis: true },
   { href: '/empresas', label: 'Empresas' },
+  { href: '/gaming', label: 'Gaming', rgb: true },
   { href: '/blog', label: 'Blog' },
+  { href: '/sobre-vmpz', label: 'Sobre mí' },
   { href: '/contacto', label: 'Contacto' },
 ];
 
@@ -43,12 +45,13 @@ export function Navbar() {
               href={l.href}
               className={cn(
                 'text-sm transition-colors',
-                l.emphasis
-                  ? 'rounded-full border border-electric/40 bg-electric/10 px-3.5 py-1.5 font-semibold text-electric2 hover:bg-electric/20'
-                  : 'text-muted hover:text-ink'
+                l.emphasis &&
+                  'rounded-full border border-electric/40 bg-electric/10 px-3.5 py-1.5 font-semibold text-electric2 hover:bg-electric/20',
+                l.rgb && 'font-semibold text-ink hover:text-white',
+                !l.emphasis && !l.rgb && 'text-muted hover:text-ink'
               )}
             >
-              {l.label}
+              {l.rgb ? <span className="relative rgb-underline">{l.label}</span> : l.label}
             </Link>
           ))}
           <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
@@ -78,12 +81,16 @@ export function Navbar() {
                 onClick={() => setOpen(false)}
                 className={cn(
                   'rounded-lg px-3 py-3',
-                  l.emphasis
-                    ? 'bg-electric/10 font-semibold text-electric2'
-                    : 'text-ink hover:bg-white/[0.05]'
+                  l.emphasis && 'bg-electric/10 font-semibold text-electric2',
+                  l.rgb && 'font-semibold text-ink',
+                  !l.emphasis && !l.rgb && 'text-ink hover:bg-white/[0.05]'
                 )}
               >
-                {l.label}
+                {l.rgb ? (
+                  <span className="relative rgb-underline inline-block">{l.label}</span>
+                ) : (
+                  l.label
+                )}
               </Link>
             ))}
             <a href={whatsappLink()} target="_blank" rel="noopener noreferrer" className="mt-2">

@@ -8,6 +8,7 @@ import { SmoothScroll } from '@/components/SmoothScroll';
 import { WhatsAppFloat } from '@/components/WhatsAppFloat';
 import { CookieBanner } from '@/components/CookieBanner';
 import { JsonLd, localBusinessSchema } from '@/components/JsonLd';
+import { Analytics } from '@vercel/analytics/next';
 import { site } from '@/lib/site';
 
 const display = Space_Grotesk({
@@ -70,6 +71,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <WhatsAppFloat />
         <CookieBanner />
+        <Analytics />
       </body>
     </html>
   );

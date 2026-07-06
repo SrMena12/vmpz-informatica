@@ -33,6 +33,16 @@ export function Footer() {
                 Mantenimiento para empresas
               </Link>
             </li>
+            <li>
+              <Link href="/gaming" className="font-medium text-electric2 hover:text-ink">
+                PC Gaming a medida
+              </Link>
+            </li>
+            <li>
+              <Link href="/sobre-vmpz" className="text-muted hover:text-ink">
+                Sobre VMPZ
+              </Link>
+            </li>
             {servicios.map((s) => (
               <li key={s.slug}>
                 <Link href={`/servicios/${s.slug}`} className="text-muted hover:text-ink">

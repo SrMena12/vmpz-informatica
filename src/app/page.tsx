@@ -1,5 +1,6 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
-import { MapPin, Building2, ArrowRight, Check } from 'lucide-react';
+import { MapPin, Building2, ArrowRight, Check, Gamepad2 } from 'lucide-react';
 import { Hero } from '@/components/sections/Hero';
 import { ServicesGrid } from '@/components/sections/ServicesGrid';
 import { Trust } from '@/components/sections/Trust';
@@ -7,8 +8,16 @@ import { Faq } from '@/components/sections/Faq';
 import { ContactCTA } from '@/components/sections/ContactCTA';
 import { Reveal } from '@/components/Reveal';
 import { JsonLd, faqSchema } from '@/components/JsonLd';
+import { buildMetadata } from '@/lib/seo';
 import { municipios } from '@/lib/municipios';
 import { site } from '@/lib/site';
+
+export const metadata: Metadata = buildMetadata({
+  title: 'Informático a domicilio en Toledo y La Sagra',
+  description:
+    'Informático a domicilio en Toledo y La Sagra. Reparación de ordenadores, instalación de SSD, formateo, virus, copias de seguridad y mantenimiento para empresas. Precio claro y atención cercana.',
+  path: '/',
+});
 
 const homeFaq = [
   {
@@ -89,6 +98,35 @@ export default function HomePage() {
               <Link href="/empresas">
                 <span className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-electric px-8 font-medium text-white shadow-glow transition-all duration-300 hover:bg-electric2">
                   Ver planes para empresas
+                  <ArrowRight size={18} />
+                </span>
+              </Link>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* VMPZ Gaming */}
+      <section className="section container-page">
+        <Reveal className="relative overflow-hidden rounded-3xl border border-line bg-surface/60 px-6 py-12 sm:px-12">
+          <div className="pointer-events-none absolute -left-16 bottom-0 h-72 w-72 rounded-full bg-electric/20 blur-[110px]" />
+          <div className="relative grid items-center gap-8 lg:grid-cols-[0.8fr_1.2fr]">
+            <div className="lg:order-2">
+              <span className="eyebrow">
+                <Gamepad2 size={13} /> VMPZ Gaming
+              </span>
+              <h2 className="mt-5 font-display text-3xl font-bold sm:text-4xl">
+                ¿Quieres un PC gaming a medida?
+              </h2>
+              <p className="mt-4 max-w-xl text-muted">
+                Tres configuraciones (Basic, Standard y Ultra) con piezas actuales, montadas,
+                optimizadas y probadas. Listas para jugar en 1080p, 1440p o 4K.
+              </p>
+            </div>
+            <div className="lg:order-1 lg:justify-self-start">
+              <Link href="/gaming">
+                <span className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-electric2/60 bg-surface2/60 px-8 font-medium text-ink transition-all duration-300 hover:border-electric2 hover:shadow-glow-sm">
+                  Ver configuraciones gaming
                   <ArrowRight size={18} />
                 </span>
               </Link>
